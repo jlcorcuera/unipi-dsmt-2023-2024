@@ -10,7 +10,9 @@
 
 ## Topics
 
-- [Hands-on session 1: Apache Maven & jinterface](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/)
+- [Hands-on session 1: Apache Maven & jinterface](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab01)
+- [Hands-on session 2: FedLang, a Middleware Support to Federated Learning Experiments](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab02)
+- [Hands-on session 3: Jakarta EE - Part 1: Servlets](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab03)
 
 ## Community
 
