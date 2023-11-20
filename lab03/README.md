@@ -1,5 +1,5 @@
 
-# Hands-on session 3: Java EE - Part 1: Servlets
+# Hands-on session 3: Jakarta EE - Part 1: Servlets
 
 
 In this session, the next topics are covered:
