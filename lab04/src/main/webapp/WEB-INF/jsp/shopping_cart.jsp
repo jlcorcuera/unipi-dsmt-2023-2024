@@ -39,7 +39,7 @@
                         <h6 class="my-0"><%= beerDTO.getName()%></h6>
                         <small class="text-muted"></small>
                     </div>
-                    <span class="text-muted"><%= beerDTO.getQuantity()%></span>
+                    <input type="text" value="<%= beerDTO.getQuantity()%>"/>
                 </li>
             <%  } %>
             <li class="list-group-item d-flex justify-content-between">
@@ -49,6 +49,7 @@
             <% } %>
         </ul>
         <div class="mb-2">
+            <button type="submit" class="btn btn-primary">Clear</button>
             <button type="submit" class="btn btn-primary">Checkout</button>
             <a class="btn btn-secondary" href="${pageContext.request.contextPath}/BeerSearchServlet">Back</a>
         </div>

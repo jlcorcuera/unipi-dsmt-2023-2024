@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: jose
   Date: 26/11/23
@@ -11,15 +13,18 @@
     <title>DSMT: Lab 04 - Input Text</title>
 </head>
 <%
-    int n = 10;
+    Calendar calendar = Calendar.getInstance();
+    int currentMinutes = calendar.get(Calendar.MINUTE);
+    SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+    String currentDateTime = SDF.format(new Date());
 %>
 
 <body>
-    <h1>Example of HTML dynamic generation</h1>
-    <% for(int i = 0; i < n; i++) {%>
-        <label for="<%= "id"+i %>" >Input <%= i%></label>
-        <input id="<%= "id"+i %>" type="text" value="<%= "Value here " + i%>"/>
-        <br/>
-    <%} %>
+    <h1>Current time <%= currentDateTime%></h1>
+    <% if (currentMinutes % 2 == 0) {%>
+        <h1>¡Bienvenido al curso de DSMT!</h1>
+    <%} else { %>
+        <h1>Benvenuto al corso di DSMT!</h1>
+    <% } %>
 </body>
 </html>
