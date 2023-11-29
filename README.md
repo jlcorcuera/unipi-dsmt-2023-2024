@@ -14,6 +14,7 @@
 - [Hands-on session 2: FedLang, a Middleware Support to Federated Learning Experiments](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab02)
 - [Hands-on session 3: Jakarta EE - Part 1: Servlets](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab03)
 - [Hands-on session 4: Jakarta EE - Part 2: Servlets + JSP](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab04)
+- [Hands-on session 5: Glassfish & EJBs](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab05)
 
 ## Community
 
