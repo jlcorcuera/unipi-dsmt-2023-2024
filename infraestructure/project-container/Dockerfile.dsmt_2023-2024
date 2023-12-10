@@ -1,0 +1,68 @@
+# To build the image: docker build -f Dockerfile.dsmt_2023-2024 -t unipi/dsmt:20232024 .
+# To run the image: docker run -d -t -p 9084:8084 -p 9080:8080 -p 5858:4848 --name dsmt-20232024 unipi/dsmt:20232024
+# To connect to a running container: docker exec -it dsmt-20232024 /bin/bash
+
+FROM ubuntu:22.04
+
+# For more information: https://stackoverflow.com/questions/20635472/using-the-run-instruction-in-a-dockerfile-with-source-does-not-work
+SHELL ["/bin/bash", "-c"]
+
+ENV SDKMAN_DIR=/root/.sdkman
+
+# Tomcat: updating tomcat-users.xml, server.xml files
+COPY tomcat-conf/tomcat-users.xml /tmp/tomcat-users.xml
+COPY tomcat-conf/server.xml /tmp/server.xml
+
+# Tomcat: updating context.xml on manager web app to allow users access from anywhere
+COPY tomcat-conf/context.xml /tmp/context.xml
+
+# Glassfish: defining a file to change the admin password and another one to enable secure access to the admin console
+COPY glassfish-conf/tmpfile /tmp/tmpfile
+COPY glassfish-conf/pwdfile /tmp/pwdfile
+
+# Very useful: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+RUN apt-get update \
+	&& apt-get install -y curl git unzip zip vim apt-utils wget libncurses-dev build-essential \
+    && mkdir $HOME/servers \
+	&& cd $HOME/servers \
+	&& wget -O $HOME/servers/apache-tomcat-10.1.16.zip https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.16/bin/apache-tomcat-10.1.16.zip \
+	&& wget -O $HOME/servers/glassfish-7.0.11.zip https://www.eclipse.org/downloads/download.php?file=/ee4j/glassfish/glassfish-7.0.11.zip \
+	&& unzip $HOME/servers/apache-tomcat-10.1.16.zip \
+	&& unzip $HOME/servers/glassfish-7.0.11.zip \
+	&& rm -f $HOME/servers/*.zip
+
+RUN curl -s "https://get.sdkman.io" | bash \
+	&& source "$HOME/.sdkman/bin/sdkman-init.sh" \
+	&& sdk install java 11.0.12-open || true \
+	&& sdk install maven 3.8.6 || true \
+	&& chmod +x $HOME/servers/apache-tomcat-10.1.16/bin/*.sh \
+	&& chmod +x $HOME/servers/glassfish7/bin/*
+
+RUN mkdir $HOME/software \
+	&& cd $HOME/software \
+	&& git clone https://github.com/robisonsantos/evm.git \
+	&& cd evm \
+	&& ./install \
+	&& source $HOME/.evm/scripts/evm \
+	&& echo 'source $HOME/.evm/scripts/evm' >> ~/.bashrc \
+    && echo y | evm install 25.1.1 \
+    && evm default 25.1.1
+
+# Add candidate path to $PATH environment variable
+ENV JAVA_HOME="$SDKMAN_DIR/candidates/java/current"
+ENV PATH="$JAVA_HOME/bin:$PATH"
+
+# Tomcat: updating tomcat-users.xml, server.xml files
+# Tomcat: updating context.xml on manager web app to allow users access from anywhere
+RUN cp /tmp/tomcat-users.xml $HOME/servers/apache-tomcat-10.1.16/conf/tomcat-users.xml \
+    && cp /tmp/server.xml $HOME/servers/apache-tomcat-10.1.16/conf/server.xml \
+    && mv /tmp/context.xml $HOME/servers/apache-tomcat-10.1.16/webapps/manager/META-INF/context.xml
+
+# Glassfish: changing password and enabling secure access to the administration console
+RUN $HOME/servers/glassfish7/bin/asadmin start-domain \
+	&& $HOME/servers/glassfish7/bin/asadmin --user admin --passwordfile=/tmp/tmpfile change-admin-password \
+	&& $HOME/servers/glassfish7/bin/asadmin --user admin --passwordfile=/tmp/pwdfile enable-secure-admin \
+	&& $HOME/servers/glassfish7/bin/asadmin stop-domain \
+	&& rm -f /tmp/tmpfile /tmp/pwdfile
+
+ENTRYPOINT ["/bin/bash"]
