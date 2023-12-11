@@ -37,7 +37,7 @@ docker ps -a
 In case it is not running, run the command of the previous step. Next:
 
 ```sh
-docker exec -it dsmt-20222023 /bin/bash
+docker exec -it dsmt-20232024 /bin/bash
 ```
 
 **Once you connect to a container, you have to run manually either Apache Tomcat or Glassfish.**
