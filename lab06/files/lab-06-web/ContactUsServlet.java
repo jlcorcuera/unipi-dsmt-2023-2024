@@ -1,4 +1,4 @@
-package it.unipi.dsmt.javaee.lab_10.servlets;
+package it.unipi.dsmt.javaee.lab_06.servlets;
 
 import it.unipi.dsmt.jakartaee.lab_10_ejb_interfaces.dto.ContactUsDTO;
 import it.unipi.dsmt.jakartaee.lab_10_ejb_interfaces.interfaces.ContactUsEJB;

@@ -1,4 +1,4 @@
-package it.unipi.dsmt.jakartaee.lab_10_ejb.producers;
+package it.unipi.dsmt.jakartaee.lab_06_ejb.producers;
 
 import it.unipi.dsmt.jakartaee.lab_10_ejb_interfaces.dto.ContactUsDTO;
 import it.unipi.dsmt.jakartaee.lab_10_ejb_interfaces.interfaces.ContactUsEJB;

@@ -1,6 +1,6 @@
-package it.unipi.dsmt.jakartaee.lab_10_ejb.consumer;
+package it.unipi.dsmt.jakartaee.lab_06_ejb.consumer;
 
-import it.unipi.dsmt.jakartaee.lab_10_ejb_interfaces.dto.ContactUsDTO;
+import it.unipi.dsmt.jakartaee.lab_06_ejb_interfaces.dto.ContactUsDTO;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.jms.JMSException;

@@ -1,4 +1,4 @@
-package it.unipi.dsmt.jakartaee.lab_10_ejb_interfaces.interfaces;
+package it.unipi.dsmt.jakartaee.lab_06_ejb_interfaces.interfaces;
 
 import it.unipi.dsmt.jakartaee.lab_10_ejb_interfaces.dto.ContactUsDTO;
 import jakarta.ejb.Remote;
