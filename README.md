@@ -16,6 +16,8 @@
 - [Hands-on session 4: Jakarta EE - Part 2: Servlets + JSP](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab04)
 - [Hands-on session 5: Glassfish & EJBs](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab05)
 - [Hands-on session 6: JMS](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab06)
+- [Hands-on session 7: WebSockets](https://github.com/jlcorcuera/unipi-dsmt-2023-2024/tree/main/lab07)
+
 
 ## Extra
 
